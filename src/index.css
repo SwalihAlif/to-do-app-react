@@ -7,7 +7,8 @@
 
 /* Body Styling */
 body {
-  background-color: #f5f7fa;
+  background: linear-gradient(120deg, #b0d303, #af0293); /* Gradient colors */
+  animation: gradient-animation 6s infinite; /* Subtle gradient animation */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,17 +17,35 @@ body {
   color: #333;
   padding: 20px;
 }
+/* Gradient Animation */
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.to-do-list {
+  position: relative;
+  z-index: 1; /* Keep the to-do list above particles */
+  background: rgba(255, 255, 255, 0.9); /* Optional: Semi-transparent for better readability */
+  padding: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
 
 /* To-Do List Container */
 .to-do-list {
-  background-color: #15643a;
+  background-color: #2c2c54;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 800px;
   transition: all 0.3s ease;
-
+}
 
 /* Header */
 h1 {
@@ -35,20 +54,20 @@ h1 {
   margin-bottom: 25px;
   font-weight: 600;
   letter-spacing: 0.5px;
+  text-align: center;
   
 }
 
-/* Input Field */
+/* Input Field Styling */
 input[type="text"] {
+  width: 100%; /* Takes full width of the parent container */
+  max-width: 800px; /* Limits the maximum width for responsiveness */
+  padding: 10px;
   font-size: 1rem;
-  padding: 12px 16px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  color: #333;
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
-  transition: border-color 0.3s;
+  box-sizing: border-box;
+  transition: width 0.2s ease; /* Adds smooth resizing */
 }
 
 input[type="text"]:focus {
@@ -68,16 +87,30 @@ button {
   transition: all 0.2s ease;
   margin: 0 5px;
 }
+.input-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
 
 /* Button Colors */
+/* Button Styling */
 .add-btn {
-  background-color: #3498db;
-  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #15643a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Smooth hover effect */
 }
 
 .add-btn:hover {
-  background-color: #2980b9;
+  background-color: #134f31; /* Darker green on hover */
 }
+
 
 .delete-btn {
   background-color: #e74c3c;
@@ -133,8 +166,8 @@ ol {
 
 li {
   font-size: 1rem;
-  padding: 14px 20px;
-  background-color: #ffffff;
+  padding: 10px;
+  background-color: #f0f0f0;
   margin-bottom: 10px;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
@@ -178,23 +211,93 @@ li.completed .text {
   color: #95a5a6;
 }
 
-.react-confirm-alert-button-group button {
-  background-color: #d33;
-  color: white;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.react-confirm-alert-button-group button:hover {
-  background-color: #a00;
+
+/* Button Group Styling (Centered Alignment) */
+.react-confirm-alert-button-group {
+  display: flex !important; /* Enforces Flexbox */
+  justify-content: center; /* Centers buttons horizontally */
+  align-items: center; /* Centers buttons vertically */
+  gap: 20px; /* Adds spacing between buttons */
+  margin-top: 20px; /* Spacing between message and buttons */
 }
 
-.timestamp {
-  font-size: 12px; /* Smaller font size */
-  color: #bbb; /* Light gray color */
-  margin-left: 10px; /* Adds space from the task text */
-  font-weight: normal; /* Prevents it from being bold */
+/* Button Styling */
+.react-confirm-alert-button-group button {
+  background-color: #d33; /* Red button */
+  color: white; /* White text */
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  margin-left: 40px;
 }
+
+/* Button Hover Effect */
+.react-confirm-alert-button-group button:hover {
+  background-color: #a00; /* Darker red on hover */
+}
+
+/* Dialog Container Styling (Optional) */
+.react-confirm-alert {
+  display: flex; /* Enable Flexbox */
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Centers all content horizontally */
+  text-align: center; /* Ensures centered text alignment */
+}
+
+/* Title Styling */
+.confirm-title {
+  color: #15643a; /* Green color */
+  font-weight: bold; /* Bold title */
+  font-size: 1.5rem; /* Slightly larger font size */
+}
+
+/* Message Styling */
+.confirm-message {
+  color: #333; /* Gray color for readability */
+  font-size: 1rem; /* Matches typical body text size */
+  margin-left: 20px;
+}
+
+/* Overlay Styling */
+.custom-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+
+
+/* Timestamp Styling */
+.timestamp {
+  font-size: 0.85rem; /* Slightly smaller font size */
+  color: #888; /* Light gray for subtle emphasis */
+  margin-left: 10px; /* Adds spacing between task text and timestamp */
+  background-color: #f4f4f4; /* Optional: Adds a faint background for distinction */
+  padding: 2px 6px; /* Adds some space around the text */
+  border-radius: 4px; /* Rounds the background for a clean look */
+  display: inline-block; /* Keeps timestamp aligned with the task text */
+  transition: all 0.2s ease; /* Smooth style change for hover effect */
+}
+.fa-clock {
+  margin-right: 3px;
+}
+
+.timestamp:hover {
+  color: #555; /* Darker gray on hover */
+  background-color: #e0e0e0; /* Slightly darker background on hover */
+}
+@media (max-width: 600px) {
+  .timestamp {
+      font-size: 0.75rem; /* Smaller font size for compact view */
+      margin-left: 5px; /* Reduce spacing */
+  }
+
+  li {
+      flex-direction: column; /* Stack items vertically */
+      align-items: flex-start; /* Align content to the left */
+  }
+}
+
 
 
